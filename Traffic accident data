@@ -1,0 +1,43 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the dataset (replace 'accident_data.csv' with the actual filename)
+accident_data = pd.read_csv('accident_data.csv')
+
+# Clean and preprocess the data (remove missing values, irrelevant columns, etc.)
+accident_data.dropna(inplace=True)  # Remove rows with missing values
+accident_data = accident_data[['road_conditions', 'weather', 'time_of_day']]  # Select relevant columns
+
+# Data Analysis
+# Summary statistics
+summary_stats = accident_data.describe()
+print(summary_stats)
+
+# Visualize accident hotspots and contributing factors
+# Accident count by road conditions
+plt.figure(figsize=(10, 6))
+sns.countplot(x='road_conditions', data=accident_data)
+plt.title('Accident Count by Road Conditions')
+plt.xlabel('Road Conditions')
+plt.ylabel('Number of Accidents')
+plt.xticks(rotation=45)
+plt.show()
+
+# Accident count by weather
+plt.figure(figsize=(10, 6))
+sns.countplot(x='weather', data=accident_data)
+plt.title('Accident Count by Weather')
+plt.xlabel('Weather')
+plt.ylabel('Number of Accidents')
+plt.xticks(rotation=45)
+plt.show()
+
+# Accident count by time of day
+plt.figure(figsize=(10, 6))
+sns.countplot(x='time_of_day', data=accident_data)
+plt.title('Accident Count by Time of Day')
+plt.xlabel('Time of Day')
+plt.ylabel('Number of Accidents')
+plt.xticks(rotation=45)
+plt.show()
